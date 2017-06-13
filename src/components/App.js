@@ -1,9 +1,8 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import logo from '../logo.svg';
 import '../App.css';
-import { connect } from 'react-redux';
-import {store} from '../index.js';
 
 export class App extends PureComponent {
   constructor(props) {
@@ -11,13 +10,13 @@ export class App extends PureComponent {
     this.play = this.play.bind(this);
   }
   play() {
-    if(store.payer === 1) {
+    if(this.props.player === 1) {
 
     }
     
   }
   done() {
-    store.dispatch({
+    this.props.dispatch({
       type: 'PLAYED'
     });
   }
@@ -32,11 +31,12 @@ export class App extends PureComponent {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <div className="margin-center max-width-500">
-          {[...Array(10)].map((x, i) =>
-            <TicTacToe selected={null} onClick={this.play} />
+          {[...Array(10)].map((x, i) => {
+            <TicTacToe key={i} index={i} selected={null} onClick={this.play} />
+          }
           )}
         </div>
-        <div class="confirmation" onClick={this.done}>
+        <div className="confirmation" onClick={this.done}>
           Done!
         </div>
       </div>
@@ -49,15 +49,25 @@ class TicTacToe extends PureComponent {
   
   render() {
     let section = '';
+    let space = '';
     if(this.props.selected === 'x') {
       section = <Cross />;
     } else if(this.props.selected === 'o') {
       section = <Circle />;
     }
+    console.log(this.props.key);  
+    if((this.props.key +1) % 3 === 0) {
+      space = '<div></div>';
+    } else if(this.props.selected === 'o') {
+      space = '';
+    }
     return (
+    <div>
       <section className="tic-tac-toe" onClick={this.onClick}>
         {section}
+        {space}
       </section>
+    </div>
     )
   }
 }

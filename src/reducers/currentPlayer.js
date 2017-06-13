@@ -16,6 +16,6 @@ export default function currentPlayer(state = undefined, action = {}) {
       ];  
     } 
     default:
-      return state
+      return {player: 1};
   }
 }
