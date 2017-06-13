@@ -1,39 +1,25 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import logo from '../logo.svg';
 import '../App.css';
 import { connect } from 'react-redux';
-
-/*class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <div className="margin-center max-width-500">
-          <section className="tic-tac-toe">
-          </section>
-        </div>
-      </div>
-    );
-  }
-}*/
+import {store} from '../index.js';
 
 export class App extends PureComponent {
   constructor(props) {
     super(props);
-    this.onClick = this.onClick.bind(this);
+    this.play = this.play.bind(this);
   }
-  onClick() {
+  play() {
+    if(store.payer === 1) {
+
+    }
+    
+  }
+  done() {
     store.dispatch({
-      type: 'PLAYED',
-      text: 'Read the docs'
+      type: 'PLAYED'
     });
-    this.dispatch();
   }
   render() {
     return (
@@ -47,10 +33,10 @@ export class App extends PureComponent {
         </p>
         <div className="margin-center max-width-500">
           {[...Array(10)].map((x, i) =>
-            <TicTacToe onClick={this.onClick} />
+            <TicTacToe selected={null} onClick={this.play} />
           )}
         </div>
-        <div class="confirmation">
+        <div class="confirmation" onClick={this.done}>
           Done!
         </div>
       </div>
