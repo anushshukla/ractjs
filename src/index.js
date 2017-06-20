@@ -7,26 +7,20 @@ import * as reducers from './reducers'
 import Home from './components/Home'
 import Contact from './components/Contact'
 import About from './components/About'
-import { BrowserRouter as Router, Route, Link, browserHistory, /*IndexRoute,*/ Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link, browserHistory/*, IndexRoute*//*, Switch*/ } from 'react-router-dom'
 import './index.css';
 import s from './components/styled'
-console.log(s);
-const reducersCombined = combineReducers(reducers);
 
-import styled from 'styled-components';
-const Title = styled.h1`
-  font-size: 1.5em;
-  color: purple;
-`;
+const reducersCombined=combineReducers(reducers);
 
-
-let store = createStore(reducersCombined);
-
+let store=createStore(reducersCombined);
+      // <IndexRoute component={Home} />
+      // <Route path="*" component={PageNotFound}/>
 render((
   <Provider store={store}>
-   <Router history = {browserHistory}>
+   <Router history={browserHistory}>
      <s.container>
-      <Title>Hello World</Title>
+      <s.menuTitle>Menu</s.menuTitle>
       <ul>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/about">About</Link></li>
@@ -40,10 +34,3 @@ render((
    </Router>
   </Provider>
 ), document.getElementById('root'))
-
-/*<Route exact path = "/" component = {Home}>
-   <IndexRoute component = {Home} />
-   <Route exact path = "home" component = {Home} />
-   <Route exact path = "about" component = {About} />
-   <Route exact path = "contact" component = {Contact} />
-</Route>*/
