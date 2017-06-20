@@ -1,5 +1,6 @@
-import Container from './Container'
+import * as containers from './Container'
 
-export default {
-	Container
+const styles = {
+	container: containers.container
 }
+export default styles;
