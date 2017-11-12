@@ -5,7 +5,7 @@ import Ripple from '../components/common/Ripple';
 const LeftSideMenu = props => (
 	<ul>
     <s.menuList>
-        <Link to="/practice/">
+        <Link to="/practice/home">
           <s.navBtn>
               <Ripple color="#fff" />
               Login
