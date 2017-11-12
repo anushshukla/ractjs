@@ -2,7 +2,7 @@ import styled, {keyframes} from 'styled-components';
 
 const styles = {};
 
-styles.rippleAnimation = keyframes`
+const rippleAnimation = keyframes`
   from {
     transform: scale(1);
     opacity: 0.4;
@@ -41,4 +41,4 @@ styles.RippleInnerWrapper = styled.div`
   max-height: 100%;
 `
 
-export styles
+export default styles;

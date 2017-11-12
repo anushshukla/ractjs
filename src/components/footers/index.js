@@ -1,11 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import RegFooter from './RegFooter';
+// import PropTypes from 'prop-types';
 // import s from './style';
 
-const RegFooter = props => (
-  <footer>Footer</footer>
-);
-
-export default {
+export {
   RegFooter
 }
