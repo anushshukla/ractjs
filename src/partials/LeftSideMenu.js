@@ -1,29 +1,32 @@
 import { Link } from 'react-router-dom'
 import React from 'react';
 import s from '../components/styled';
-import Ripple from '../components/Ripple';
+import Ripple from '../components/common/Ripple';
 const LeftSideMenu = props => (
 	<ul>
     <s.menuList>
-      <Ripple color="#fff">
-        <s.navBtn>
-          <Link to="/">Login</Link>
-        </s.navBtn>
-      </Ripple>
+        <Link to="/practice/">
+          <s.navBtn>
+              <Ripple color="#fff" />
+              Login
+          </s.navBtn>
+        </Link>
     </s.menuList>
     <s.menuList>
-      <Ripple color="#fff">
-        <s.navBtn>
-          <Link to="/about">About</Link>
-        </s.navBtn>
-      </Ripple>
+        <Link to="/practice/about">
+          <s.navBtn>
+              <Ripple color="#fff" />
+              About
+          </s.navBtn>
+        </Link>
     </s.menuList>
     <s.menuList>
-      <Ripple color="#fff">
-        <s.navBtn>
-          <Link to="/contacts">Contacts</Link>
-        </s.navBtn>
-      </Ripple>
+        <Link to="/practice/contacts">
+          <s.navBtn>
+              <Ripple color="#fff" />
+              Contacts
+          </s.navBtn>
+        </Link>
     </s.menuList>
 	</ul>
 )

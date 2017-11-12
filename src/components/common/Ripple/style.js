@@ -1,6 +1,8 @@
 import styled, {keyframes} from 'styled-components';
 
-const rippleAnimation = keyframes`
+const styles = {};
+
+styles.rippleAnimation = keyframes`
   from {
     transform: scale(1);
     opacity: 0.4;
@@ -11,7 +13,7 @@ const rippleAnimation = keyframes`
   }
 `
 
-const RippleElement = styled.div`
+styles.RippleElement = styled.div`
   position: absolute;
   border-radius: 50%;
   height: ${props => (props.height)};
@@ -22,12 +24,21 @@ const RippleElement = styled.div`
   ${props => (props.animate ? "animation: "+rippleAnimation+" 2s;" : '')}
 `
 
-const RippleWrapper = styled.div`
-  position: relative;
+styles.RippleWrapper = styled.div`
+  position: absolute;
   overflow: hidden;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
 `
 
-export {
-  RippleElement,
-  RippleWrapper
-}
+styles.RippleInnerWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+`
+
+export styles
