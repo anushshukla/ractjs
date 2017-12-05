@@ -2,15 +2,15 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import s from '../FormFields/style';
 import Moment from 'react-moment';
-
+console.log(Moment);
 class DateUI extends PureComponent {
 
   constructor(props) {
     super(props);
     this.state = {
-      currentYearView: Moment.year(),
-      currentMonthView: Moment.year(),
-      currentDateView: Moment.year(),
+      currentYearView: 2017/*(new Moment).year()*/,
+      currentMonthView: 2017/*(new Moment).year()*/,
+      currentDateView: 2017/*(new Moment).year()*/,
       yearWrapPaddingRight: 0,
       monthWrapPaddingRight: 0,
       dateWrapPaddingRight: 0,
@@ -104,4 +104,4 @@ DateUI.PropTypes = {
   minSecond: PropTypes.integer
 }
 
-export default Input;
+export default DateUI;

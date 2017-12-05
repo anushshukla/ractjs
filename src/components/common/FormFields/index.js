@@ -4,59 +4,16 @@ import s from './style';
 import Input from '../Inputs';
 import Select from './Select';
 import Label from './Label';
-import * as FontAwesome from 'react-icons/lib/fa'
-import MailIcon from 'react-icons/lib/fa/envelope-square'
 
+
+const emailRegex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/i;
+
+// const emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
 class FormFields extends PureComponent {
 
   constructor(props) {
     super(props);
-    this.state = {
-      hasError: 0,
-      errors: 0
-    }
-
-    this.onChange = this.onChange.bind(this);
-    this.onBlur   = this.onBlur.bind(this);
-    this.onFocus  = this.onFocus.bind(this);
-    this.onClick  = this.onClick.bind(this);
-  }
-
-  onChange(event) {
-    if(typeof this.props[onChange] === "function") {
-      this.props[onChange]();
-    }
-  }
-
-  onClick(event) {
-    if(typeof this.props[onClick] === "function") {
-      this.props[onClick]();
-    }
-  }
-
-  onBlur(event) {
-    if(typeof this.props[onBlur] === "function") {
-      this.props[onBlur]();
-    }
-  }
-
-  onFocus(event) {
-    if(typeof this.props[onFocus] === "function") {
-      this.props[onFocus]();
-    }
-  }
-
-  renderLabel() {
-    return (<label for=""></label>);
-  }
-
-  renderFontAwesome() {
-    return (
-      <s.FormFieldIconWrapper>
-        <MailIcon name={this.props.icon}/>
-      </s.FormFieldIconWrapper>
-    )
   }
 
   render() {
@@ -99,10 +56,6 @@ const Form = props => {
 
 FormFields.defaultProps = {
   type: "text",
-  required: false,
-  multiple: false,
-  showIcon: false,
-  showLabel: false
 }
 
 
@@ -110,10 +63,6 @@ FormFields.defaultProps = {
 FormFields.propTypes = {
   type: PropTypes.oneOf(['select', "textarea", "datalist", "output", "input"]),
   onClick: PropTypes.func,
-  required: PropTypes.bool.isRequired,
-  multiple: PropTypes.bool.isRequired,
-  showIcon: PropTypes.bool.isRequired,
-  showLabel: PropTypes.bool.isRequired,
   onChange: PropTypes.func,
   icon: PropTypes.string,
   fieldComponent: PropTypes.instanceOf(Input),

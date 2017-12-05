@@ -13,11 +13,11 @@ styles.FormFieldIconWrapper = styled.span`
 
 styles.input = styled.input`
   padding: 5px 10px;
-  ${props => (props.hasErrors ? "border-color: "+"red" : '')}
+  ${props => (props.hasErrors ? "border: 1px solid red" : '')}
 `;
 
 styles.select = styled.select`
-  ${props => (props.hasErrors ? "border-color: "+"red" : '')}
+  ${props => (props.hasErrors ? "border: 1px solid red" : '')}
 `;
 
 styles.inputWrapper = styled.div`
