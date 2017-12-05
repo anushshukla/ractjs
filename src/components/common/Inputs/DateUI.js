@@ -14,6 +14,8 @@ class DateUI extends PureComponent {
       yearWrapPaddingRight: 0,
       monthWrapPaddingRight: 0,
       dateWrapPaddingRight: 0,
+      modalTop: 0,
+      modalBottom: 0,
     }
   }
 
@@ -33,7 +35,7 @@ class DateUI extends PureComponent {
 
   renderMonth() {
     return (
-      <s.pickerWheelWrap innerRef={(element)=>{this.yearWrap = element}} onScroll={this.monthScrolled}>
+      <s.pickerWheelWrap innerRef={(element)=>{this.monthWrap = element}} onScroll={this.monthScrolled}>
         <s.pickerWheel>
           <div>2015</div>
           <div>2016</div>
@@ -47,7 +49,7 @@ class DateUI extends PureComponent {
 
   renderDate() {
     return (
-      <s.pickerWheelWrap innerRef={(element)=>{this.yearWrap = element}} onScroll={this.dateScrolled}>
+      <s.pickerWheelWrap innerRef={(element)=>{this.dateWrap = element}} onScroll={this.dateScrolled}>
         <s.pickerWheel>
           <div>2015</div>
           <div>2016</div>
@@ -60,22 +62,26 @@ class DateUI extends PureComponent {
   }
 
   componentDidMount() {
-    if(0) {
-      const paddingRight = this.yearWrap.offsetWidth - this.yearWrap.clientWidth + "px";
-      this.setState({...state,...{yearWrapPaddingRight: this.yearWrap}})
-    }
+    const windowHeight = window.innerHeight;
+    const windowWidth = window.innerWidth;
+    const modalTop = windowHeight - this.modalWrap.innerHeight;
+    const modalLeft = windowWidth - this.modalWrap.innerHeight;
+    const yearWrapPaddingRight = this.yearWrap.offsetWidth - this.yearWrap.clientWidth + "px";
+    const monthWrapPaddingRight = this.monthWrap.offsetWidth - this.monthWrap.clientWidth + "px";
+    const dateWrapPaddingRight = this.dateWrap.offsetWidth - this.dateWrap.clientWidth + "px";
+    this.setState({...state,...{yearWrapPaddingRight: this.yearWrap, monthWrapPaddingRight: this.monthWrapPaddingRight, dateWrapPaddingRight: this.dateWrapPaddingRight, modalTop: modalTop, modalLeft: modalLeft}});
   }
 
   render() {
-  var child = document.getElementById('container2');
+    var child = document.getElementById('container2');
     return (
-      <div>
-        <div><button>Cancel</button></div>
+      <s.modalWrap innerRef={(element)=>{this.modalWrap = element}}>
+        <div><button>Close</button></div>
         <div><button>Set</button></div>
         {this.renderYear()}
         {this.renderMonth()}
         {this.renderDate()}
-      </div>
+      </s.modalWrap>
     );
   }
 }
