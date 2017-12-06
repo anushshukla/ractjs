@@ -28,6 +28,24 @@ class Input extends PureComponent {
     }*/
   }
 
+  validate(value) {
+    if(!this.isValid()) {
+      this.setState({...this.state,...{hasErrors}});
+    }
+  }
+
+  isValid(value) {
+    const requiredError = this.props.required && !value ? true : false;
+    if(requiredError) {
+      return false;
+    }
+    const patternError = this.props.pattern && !this.props.pattern.test(value) ? true : false;
+    if(patternError) {
+      return false;
+    }
+    return true;
+  }
+
   onClick(event) {
     console.log("input click event");
     /*if(typeof this.props[onClick] === "function") {
@@ -36,8 +54,7 @@ class Input extends PureComponent {
     if(!this.props.validateOnBlur || !this.state.hasBeenFocused) {
       return false;
     }
-    const hasErrors = !event.target.value && this.props.required ? true : false;
-    this.setState({...this.state,...{hasErrors}});
+    this.validate(event.target.value);
   }
 
   onBlur(event) {
@@ -49,8 +66,7 @@ class Input extends PureComponent {
       this.setState({...this.state,...{hasBeenFocused}});
       return false;
     }
-    const hasErrors = !event.target.value && this.props.required ? true : false;
-    this.setState({...this.state,...{hasErrors, hasBeenFocused}});
+    this.validate(event.target.value);
   }
 
   onKeyDown(event) {
@@ -61,8 +77,7 @@ class Input extends PureComponent {
     if(!this.props.validateOnKeyEvts) {
       return false;
     }
-    const hasErrors = !event.target.value && this.props.required ? true : false;
-    this.setState({...this.state,...{hasErrors}});
+    this.validate(event.target.value);
   }
 
   onKeyPress(event) {
@@ -80,7 +95,7 @@ class Input extends PureComponent {
     if(!this.props.validateOnBlur) {
       return false;
     }
-    const hasErrors = !event.target.value && this.props.required ? true : false;
+    this.validate(event.target.value);
     this.setState({...this.state,...{hasErrors}});
   }
 
@@ -96,6 +111,14 @@ class Input extends PureComponent {
     /*if(typeof this.props[onFocus] === "function") {
       this.props[onFocus]();
     }*/
+  }
+
+  componentDidMount() {
+    console.log("componentDidMount");
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log("componentDidUpdate");
   }
 
   renderErrMsg() {
@@ -130,6 +153,7 @@ class Input extends PureComponent {
   }
 
   render() {
+    console.log("rendered called");
     return (
       <s.inputWrapper>
         {this.props.showLabel ? this.renderLabel() : ''}
@@ -197,6 +221,7 @@ Input.PropTypes = {
   type: PropTypes.oneOf(Input.types),
   name: PropTypes.string,
   required: PropTypes.bool.isRequired,
+  pattern: PropTypes.bool.string,
   placeholder: PropTypes.bool.isRequired,
   multiple: PropTypes.bool.isRequired,
   onClick: PropTypes.func,

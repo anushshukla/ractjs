@@ -80,9 +80,9 @@ storiesOf('FormFields', module)
         type="radio"
         name="radio" 
       />)
-  /*.add('DateUI', () =>
+  .add('DateUI', () =>
       <DateUI
         type="radio"
-      />)*/
+      />)
   
 
