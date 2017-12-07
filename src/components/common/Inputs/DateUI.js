@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import s from '../FormFields/style';
 import Moment from 'react-moment';
-console.log(Moment);
+
 class DateUI extends PureComponent {
 
   constructor(props) {
@@ -73,7 +73,7 @@ class DateUI extends PureComponent {
   }
 
   render() {
-    var child = document.getElementById('container2');
+    console.log("123");
     return (
       <s.modalWrap innerRef={(element)=>{this.modalWrap = element}}>
         <div><button>Close</button></div>

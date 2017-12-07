@@ -30,7 +30,7 @@ class Input extends PureComponent {
 
   validate(value) {
     if(!this.isValid()) {
-      this.setState({...this.state,...{hasErrors}});
+      this.setState({...this.state,...{hasErrors: true}});
     }
   }
 
@@ -96,7 +96,6 @@ class Input extends PureComponent {
       return false;
     }
     this.validate(event.target.value);
-    this.setState({...this.state,...{hasErrors}});
   }
 
   onFocus(event) {
