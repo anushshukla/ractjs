@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import s from '../FormFields/style';
+import s from './style';
 import Moment from 'react-moment';
 
 class DateUI extends PureComponent {
@@ -17,47 +17,85 @@ class DateUI extends PureComponent {
       modalTop: 0,
       modalBottom: 0,
     }
+
+    this.yearScrolled = this.yearScrolled.bind(this);
+    this.monthScrolled = this.monthScrolled.bind(this);
+    this.dateScrolled = this.dateScrolled.bind(this);
+  }
+
+  yearScrolled(event) {
+    event.preventDefault();
+    console.log("here");
+  }
+
+  monthScrolled(event) {
+    event.preventDefault();
+    console.log("here");
+  }
+
+  dateScrolled(event) {
+    event.preventDefault();
+    console.log("here");
   }
 
   renderYear() {
     return (
-      <s.pickerWheelWrap innerRef={(element)=>{this.yearWrap = element}} onScroll={this.yearScrolled}>
-        <s.pickerWheel>
-          <div>2015</div>
-          <div>2016</div>
-          <div>2017</div>
-          <div>2018</div>
-          <div>2019</div>
-        </s.pickerWheel>
-      </s.pickerWheelWrap>
+      <s.pickerWheelOuterWrap>
+        <s.pickerWheelWrap
+          innerRef={(element)=>{this.yearWrap = element}}
+          onScroll={this.yearScrolled}
+          paddingRight={this.state.yearWrapPaddingRight}
+        >
+          <s.pickerWheel>2015</s.pickerWheel>
+          <s.pickerWheel>2016</s.pickerWheel>
+          <s.pickerWheel>2017</s.pickerWheel>
+          <s.pickerWheel>2018</s.pickerWheel>
+          <s.pickerWheel>2019</s.pickerWheel>
+        </s.pickerWheelWrap>
+      </s.pickerWheelOuterWrap>
     )
   }
 
   renderMonth() {
     return (
-      <s.pickerWheelWrap innerRef={(element)=>{this.monthWrap = element}} onScroll={this.monthScrolled}>
-        <s.pickerWheel>
-          <div>2015</div>
-          <div>2016</div>
-          <div>2017</div>
-          <div>2018</div>
-          <div>2019</div>
-        </s.pickerWheel>
-      </s.pickerWheelWrap>
+      <s.pickerWheelOuterWrap>
+        <s.pickerWheelWrap
+          innerRef={(element)=>{this.monthWrap = element}}
+          onScroll={this.monthScrolled}
+          paddingRight={this.state.monthWrapPaddingRight}
+        >
+          <s.pickerWheel>January</s.pickerWheel>
+          <s.pickerWheel>February</s.pickerWheel>
+          <s.pickerWheel>March</s.pickerWheel>
+          <s.pickerWheel>April</s.pickerWheel>
+          <s.pickerWheel>May</s.pickerWheel>
+          <s.pickerWheel>June</s.pickerWheel>
+          <s.pickerWheel>July</s.pickerWheel>
+          <s.pickerWheel>August</s.pickerWheel>
+          <s.pickerWheel>September</s.pickerWheel>
+          <s.pickerWheel>October</s.pickerWheel>
+          <s.pickerWheel>November</s.pickerWheel>
+          <s.pickerWheel>December</s.pickerWheel>
+        </s.pickerWheelWrap>
+        </s.pickerWheelOuterWrap>
     )
   }
 
   renderDate() {
     return (
-      <s.pickerWheelWrap innerRef={(element)=>{this.dateWrap = element}} onScroll={this.dateScrolled}>
-        <s.pickerWheel>
-          <div>2015</div>
-          <div>2016</div>
-          <div>2017</div>
-          <div>2018</div>
-          <div>2019</div>
-        </s.pickerWheel>
-      </s.pickerWheelWrap>
+      <s.pickerWheelOuterWrap>
+        <s.pickerWheelWrap
+          innerRef={(element)=>{this.dateWrap = element}}
+          onScroll={this.dateScrolled}
+          paddingRight={this.state.dateWrapPaddingRight}
+        >
+          <s.pickerWheel>1</s.pickerWheel>
+          <s.pickerWheel>2</s.pickerWheel>
+          <s.pickerWheel>3</s.pickerWheel>
+          <s.pickerWheel>4</s.pickerWheel>
+          <s.pickerWheel>5</s.pickerWheel>
+        </s.pickerWheelWrap>
+      </s.pickerWheelOuterWrap>
     )
   }
 
@@ -69,18 +107,27 @@ class DateUI extends PureComponent {
     const yearWrapPaddingRight = this.yearWrap.offsetWidth - this.yearWrap.clientWidth + "px";
     const monthWrapPaddingRight = this.monthWrap.offsetWidth - this.monthWrap.clientWidth + "px";
     const dateWrapPaddingRight = this.dateWrap.offsetWidth - this.dateWrap.clientWidth + "px";
-    this.setState({...state,...{yearWrapPaddingRight: this.yearWrap, monthWrapPaddingRight: this.monthWrapPaddingRight, dateWrapPaddingRight: this.dateWrapPaddingRight, modalTop: modalTop, modalLeft: modalLeft}});
+    const newState = {...this.state,...{yearWrapPaddingRight, monthWrapPaddingRight, dateWrapPaddingRight, modalTop, modalLeft}};
+    this.setState(newState);
   }
 
   render() {
-    console.log("123");
     return (
       <s.modalWrap innerRef={(element)=>{this.modalWrap = element}}>
-        <div><button>Close</button></div>
-        <div><button>Set</button></div>
-        {this.renderYear()}
-        {this.renderMonth()}
-        {this.renderDate()}
+        <s.modalOverlay />
+        <s.btnWrap>
+          <s.closeBtn>
+            Close
+          </s.closeBtn>
+          <s.setBtn>
+            Set
+          </s.setBtn>
+        </s.btnWrap>
+        <s.pickerWheelsWrap>
+          {this.renderYear()}
+          {this.renderMonth()}
+          {this.renderDate()}
+        </s.pickerWheelsWrap>
       </s.modalWrap>
     );
   }
