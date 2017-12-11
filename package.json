@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "gh-pages": "^1.1.0",
     "moment": "^2.19.3",
     "moment-timezone": "^0.5.14",
     "prop-types": "^15.5.10",
@@ -17,12 +18,12 @@
     "styled-components": "^2.0.1"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^3.2.16",
+    "@storybook/addon-links": "^3.2.16",
+    "@storybook/react": "^3.2.16",
     "axios": "^0.16.2",
     "react-scripts": "0.9.5",
-    "tcomb": "^3.2.20",
-    "@storybook/react": "^3.2.16",
-    "@storybook/addon-actions": "^3.2.16",
-    "@storybook/addon-links": "^3.2.16"
+    "tcomb": "^3.2.20"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -30,6 +31,9 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "homepage": "https://anushshukla.github.io/reactjs/",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -b master -d build"
   }
 }
