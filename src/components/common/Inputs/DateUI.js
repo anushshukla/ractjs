@@ -89,6 +89,7 @@ class DateUI extends PureComponent {
           onScroll={this.dateScrolled}
           paddingRight={this.state.dateWrapPaddingRight}
         >
+          <s.selectedValueEffect />
           <s.pickerWheel>1</s.pickerWheel>
           <s.pickerWheel>2</s.pickerWheel>
           <s.pickerWheel>3</s.pickerWheel>

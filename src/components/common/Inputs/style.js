@@ -18,6 +18,12 @@ styles.pickerWheelWrap = styled.div`
   margin-right: ${props => '-'+props.paddingRight};
 `;
 
+styles.selectedValueEffect = styled.span`
+  height: 35px;
+  border-top: 1x dash red;
+  border-bottom: 1x dash red;
+`;
+
 styles.pickerWheel = styled.span`
   display: inline-flex;
   width 100%;
